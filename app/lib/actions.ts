@@ -74,7 +74,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
     `;
     revalidatePath("/dashboard/invoices");
   } catch (error) {
-    return { message: "Error creating customer" };
+    return { message: "Error creating customer" + error };
   }
 
   redirect("/dashboard/invoices");
@@ -99,7 +99,7 @@ export async function updateInvoice(id: string, formData: FormData) {
   `;
     revalidatePath("/dashboard/invoices");
   } catch (error) {
-    return { message: "Error updating invoice" };
+    return { message: "Error updating invoice" + error };
   }
 
   redirect("/dashboard/invoices");
@@ -110,6 +110,6 @@ export async function deleteInvoice(id: string) {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath("/dashboard/invoices");
   } catch (error) {
-    return { message: "Error deleting invoice" };
+    return { message: "Error deleting invoice" + error };
   }
 }
